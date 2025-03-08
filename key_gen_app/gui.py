@@ -1,5 +1,6 @@
 import customtkinter as ctk
 import psutil
+from keygen import GenerateAndSaveKeys
 
 ctk.set_appearance_mode("system")  
 ctk.set_default_color_theme("blue")  
@@ -40,9 +41,10 @@ class Gui(ctk.CTk):
 
     def getPin(self):
         pinCode = self.inputField.get()
-        selected = self.pendriveComboBox.get()
+        selectedPendrive = self.pendriveComboBox.get()
         print(f"Entered pin: {pinCode}")
-        print(f"Selected pendrive: {selected}")
+        print(f"Selected pendrive: {selectedPendrive}")
+        GenerateAndSaveKeys(pinCode, selectedPendrive)
 
     def detectPendrive(self):
         self.pendrives = self.searchForPendrive()
