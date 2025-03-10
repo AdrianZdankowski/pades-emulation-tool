@@ -1,7 +1,7 @@
 import customtkinter as ctk
 import threading
 from CTkMessagebox import CTkMessagebox
-from auxilliary_application.key_gen_app.keygen import GenerateAndSaveKeys
+from auxilliary_application.keygen import GenerateAndSaveKeys
 from utils.commonFunctions import searchForPendrive
 
 
@@ -96,7 +96,6 @@ class Gui(ctk.CTk):
 
         
     def validatePin(self, value):
-        print("Wykonuje walidacje")
         if value.isdigit() and len(value) <= 8:
             if len(value) == 8:
                 self.submitButton.configure(state="normal")
