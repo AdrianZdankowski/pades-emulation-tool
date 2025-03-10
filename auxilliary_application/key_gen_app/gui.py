@@ -1,8 +1,9 @@
 import customtkinter as ctk
-import psutil
 import threading
 from CTkMessagebox import CTkMessagebox
-from keygen import GenerateAndSaveKeys
+from auxilliary_application.key_gen_app.keygen import GenerateAndSaveKeys
+from utils.commonFunctions import searchForPendrive
+
 
 ctk.set_appearance_mode("system")  
 ctk.set_default_color_theme("blue")  
@@ -44,15 +45,8 @@ class Gui(ctk.CTk):
 
         self.pendriveComboBox.configure(state="readonly")
 
-        self.pendrives = self.searchForPendrive()
+        self.pendrives = searchForPendrive()
         self.updateInputState()        
-
-    def searchForPendrive(self):
-        pendrives = []
-        for partition in psutil.disk_partitions(all=False):
-            if 'removable' in partition.opts.lower():
-                pendrives.append(partition.device)
-        return pendrives
 
     def getPin(self):
         pinCode = self.inputField.get()
@@ -82,7 +76,7 @@ class Gui(ctk.CTk):
         thread.start()
 
     def detectPendrive(self):
-        self.pendrives = self.searchForPendrive()
+        self.pendrives = searchForPendrive()
         self.updateInputState()
 
     def updateInputState(self):
