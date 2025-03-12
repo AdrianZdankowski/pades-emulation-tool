@@ -7,9 +7,6 @@ import os
 
 
 def GenerateAndSaveKeys(gui, pin, pendrive, publicKeyPath, DELAY_IN_MS):
-    print(pin)
-    print(pendrive)
-    print(publicKeyPath)
     try:
         gui.after(0, gui.setGenerationStatusLabelText, "Generating PIN hash...")
         pseudoRandomGenerator = get_random_bytes
