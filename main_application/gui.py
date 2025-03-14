@@ -128,6 +128,28 @@ class Gui(ctk.CTk):
         else:
             self.submitVerifyButton.configure(state="disabled")
 
+    def resetSignPdfFileMenu(self):
+        self.inputField.configure(validate="none")  
+        self.inputField.delete(0, "end")
+        self.inputField.configure(validate="key" ,validatecommand=self.vcmd)
+        self.inputFieldStatus.configure(text="")
+            
+        self.inputLabel.pack_forget()
+        self.inputField.pack_forget()
+        self.inputFieldStatus.pack_forget()
+        self.pdfFilePathButton.pack_forget()
+        self.pdfFilePathInfo.pack_forget()
+        self.submitSignButton.pack_forget()
+        self.infoAboutSigningDocument.pack_forget()
+        self.returnToMenuButton.pack_forget()
+
+    def resetVerifyPdfFileMenu(self):
+        self.pdfFilePathButton.pack_forget()
+        self.pdfFilePathInfo.pack_forget()
+        self.submitVerifyButton.pack_forget()
+        self.infoAboutVerifyingDocument.pack_forget()
+        self.returnToMenuButton.pack_forget()
+
     def returnToMenu(self):
         self.isValidPin = False
         self.isPdfFileSelected = False
@@ -135,31 +157,12 @@ class Gui(ctk.CTk):
 
         if self.menuState == MENU_STATE_SIGNING:
             self.menuState = MENU_STATE_MAIN
-
-            self.inputField.configure(validate="none")  
-            self.inputField.delete(0, "end")
-            self.inputField.configure(validate="key" ,validatecommand=self.vcmd)
-            self.inputFieldStatus.configure(text="")
+            self.resetSignPdfFileMenu()
             
-
-            self.inputLabel.pack_forget()
-            self.inputField.pack_forget()
-            self.inputFieldStatus.pack_forget()
-            self.pdfFilePathButton.pack_forget()
-            self.pdfFilePathInfo.pack_forget()
-            self.submitSignButton.pack_forget()
-            self.infoAboutSigningDocument.pack_forget()
-            self.returnToMenuButton.pack_forget()
-
         elif self.menuState == MENU_STATE_VERIFYING:
             self.menuState = MENU_STATE_MAIN
-
-            self.pdfFilePathButton.pack_forget()
-            self.pdfFilePathInfo.pack_forget()
-            self.submitVerifyButton.pack_forget()
-            self.infoAboutVerifyingDocument.pack_forget()
-            self.returnToMenuButton.pack_forget()
-
+            self.resetVerifyPdfFileMenu()
+            
         self.titleLabel.pack(pady=(40, 0))
         self.signFileButton.pack(pady=(60,20))
         self.verifyFileButton.pack(pady=(30.0))
