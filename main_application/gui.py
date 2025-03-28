@@ -1,9 +1,11 @@
 import customtkinter as ctk
-from utils.commonFunctions import searchForPendrive
+from utils.commonFunctions import searchForPendrive, searchAndReadPrivateKey
+from main_application.signAndVerifyPDF import verifyPin
 
 MENU_STATE_MAIN = 1
 MENU_STATE_SIGNING = 2
 MENU_STATE_VERIFYING = 3
+PRIVATE_KEY_PATH = "Key/encrypted_PK.bin"
 
 ctk.set_appearance_mode("system")  
 ctk.set_default_color_theme("blue")  
@@ -20,7 +22,7 @@ class Gui(ctk.CTk):
         self.signFileMenuButton = ctk.CTkButton(self, width=280, height=70, text="Sign the PDF file", font=("Arial", 20), command=self.signFileMenu)
         self.verifyFileMenuButton = ctk.CTkButton(self, width=280, height=70, text="Verify the PDF file", font=("Arial", 20), command=self.verifyFileMenu)
         self.detectPendriveButton = ctk.CTkButton(self, width=280, height=70, text="Search pendrive again", font=("Arial", 20), command=self.checkIfPendriveSearched)
-        self.infoAboutPendrive = ctk.CTkLabel(self, text="No pendrive detected! Please try again!", font=("Arial", 30), text_color="red")
+        self.infoAboutPendrive = ctk.CTkLabel(self, text="No pendrive detected\n or\n private key not found!\n\n Please try again!", font=("Arial", 30), text_color="red")
 
         self.inputLabel = ctk.CTkLabel(self, text="Input 8-digit PIN code", font=("Arial", 20))
         self.inputField = ctk.CTkEntry(self, show="*",validate="key" ,validatecommand=self.vcmd, width=280, height=30)
@@ -30,7 +32,7 @@ class Gui(ctk.CTk):
         self.pdfFilePathInfo = ctk.CTkLabel(self, text="")
         
         self.submitSignButton = ctk.CTkButton(self, width=280, height=60, text="Submit", font=("Arial", 20), command=self.signPdfFile)
-        self.infoAboutSigningDocument = ctk.CTkLabel(self, text="The entered PIN is associated with your private key!", font=("Arial", 20), text_color="green")
+        self.infoAboutSigningDocument = ctk.CTkLabel(self, text="", font=("Arial", 20))
 
         self.submitVerifyButton = ctk.CTkButton(self, width=280, height=60, text="Submit", font=("Arial", 20), command=self.verifyPdfFile)
         self.infoAboutVerifyingDocument = ctk.CTkLabel(self, text="The PDF file is identical to the originally signed document!", font=("Arial", 20), text_color="green")
@@ -38,6 +40,8 @@ class Gui(ctk.CTk):
         self.returnToMenuButton = ctk.CTkButton(self, width=280, height=60, text="Back", font=("Arial", 20), command=self.returnToMenu)
 
         self.pendrives = []
+        self.privateKey = ""
+        self.DELAY_IN_MS = 1000
 
         self.titleLabel.pack(pady=(40, 20))
         self.checkIfPendriveSearched()
@@ -64,19 +68,17 @@ class Gui(ctk.CTk):
 
             self.infoAboutPendrive.pack(pady=(80,20))
             self.detectPendriveButton.pack(pady=(50,0))
-
-
+                        
     def detectPendrive(self):
         self.pendrives = searchForPendrive()
         if len(self.pendrives) == 0:
             return False
-        return True
+        self.privateKey = searchAndReadPrivateKey(self.pendrives, PRIVATE_KEY_PATH)
+        if self.privateKey != "Not found":
+            return True
+        return False
 
     def resetMainMenu(self):
-        if self.infoAboutPendrive.winfo_ismapped():
-            self.infoAboutPendrive.pack_forget()
-        if self.detectPendriveButton.winfo_ismapped():
-            self.detectPendriveButton.pack_forget()
         if self.signFileMenuButton.winfo_ismapped():
             self.signFileMenuButton.pack_forget()
         if self.verifyFileMenuButton.winfo_ismapped():
@@ -161,6 +163,7 @@ class Gui(ctk.CTk):
         self.inputField.delete(0, "end")
         self.inputField.configure(validate="key" ,validatecommand=self.vcmd)
         self.inputFieldStatus.configure(text="")
+        self.infoAboutSigningDocument.configure(text="")
             
         self.inputLabel.pack_forget()
         self.inputField.pack_forget()
@@ -190,10 +193,19 @@ class Gui(ctk.CTk):
             self.menuState = MENU_STATE_MAIN
             self.resetVerifyPdfFileMenu()
             
-        self.checkIfPendriveSearched()
+        self.signFileMenuButton.pack(pady=(100,20))
+        self.verifyFileMenuButton.pack(pady=(70.0))
+
+    def setSigningPDFStatusLabelText(self, newState, color):
+        self.infoAboutSigningDocument.configure(text=newState, text_color=color)
 
     def signPdfFile(self):
-        pass
+        self.after(0, self.setSigningPDFStatusLabelText, "Signing your PDF file ...", "white")
+        self.after(self.DELAY_IN_MS, self.setSigningPDFStatusLabelText, "Verifying your PIN ...", "white")
+        if verifyPin(self.inputField.get(), self.privateKey):
+            self.after(self.DELAY_IN_MS * 2, self.setSigningPDFStatusLabelText, "Your PIN is correct", "green")
+        else:
+            self.after(self.DELAY_IN_MS * 2, self.setSigningPDFStatusLabelText, "Your PIN is incorrect", "red")
 
     def verifyPdfFile(self):
         pass
