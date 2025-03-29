@@ -8,4 +8,5 @@ dependencies = [
     "customtkinter>=5.2.2",
     "psutil>=7.0.0",
     "pycryptodome>=3.21.0",
+    "PyPDF2>=1.26.0",
 ]
