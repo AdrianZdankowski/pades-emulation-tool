@@ -1,3 +1,12 @@
+##
+#@file keygen.py
+#@brief RSA key generation and encryption module.
+#
+#This module provides functions to generate RSA key pairs, encrypt private key, 
+#and store them securely.
+#
+#Functions:
+#    - GenerateAndSaveKeys: generates a pair of RSA keys, encrypts the private key and saves them in user's chosen locations.
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
@@ -5,7 +14,18 @@ from Crypto.Util.Padding import pad
 from hashlib import sha256
 import os
 
-
+##
+#@brief Generates a private and public RSA key pair, encrypts the private key using a PIN, 
+#           and saves both keys in specified locations.
+#
+#    @param gui GUI object used to update the generation status in the user interface.
+#    @param pin PIN used to encrypt the private key.
+#    @param pendrive Path to the pendrive where the encrypted private key will be saved.
+#    @param publicKeyPath Path to the directory where the public key will be stored.
+#    @param DELAY_IN_MS Delay in milliseconds used for updating the user interface status.
+#
+#    @return True if the key pair generation and saving operation is successful, False in case of an error.
+#
 def GenerateAndSaveKeys(gui, pin, pendrive, publicKeyPath, DELAY_IN_MS):
     try:
         gui.after(0, gui.setGenerationStatusLabelText, "Generating PIN hash...")
