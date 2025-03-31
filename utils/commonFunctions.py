@@ -19,6 +19,15 @@ def searchForPendrive():
                 pendrives.append(partition.device)
         return pendrives
 
+
+##
+#@brief Searches for a file containing the user's private key on mounted pendrives and reads its contents.
+#
+#@param pendrives List of mounted pendrives.
+#@param filePath Relative path to the file containing the user's private key.
+#
+#@return Returns the private key as bytes if the file was found and successfully read. On the other hand, returns the string "Not found" if no file has been found. 
+#
 def searchAndReadPrivateKey(pendrives, filePath):
         for pendrive in pendrives:
 
