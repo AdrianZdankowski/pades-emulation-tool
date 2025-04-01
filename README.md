@@ -1,16 +1,16 @@
 # Tool for Emulating the PAdES Qualified Electronic Signature
 
-## Project overview
+## 📖 Project overview
 
 The main goal of the project is to realize a software tool for emulating the qualified electronic signature in accordance to the **PAdES (PDF Advanced Electronic Signature)** format. The primary task of the project is to design and develop an application that will allow to digitally sign PDF documents using RSA encryption.The private key is stored on a USB drive encrypted by the AES algorithm.
 
-## Project features
+## 🛠️ Project features
 - **Auxilliary application** for generating a **pair of RSA 4096-length keys**. Generated private key will be stored on the chosen **USB drive** and encrypted using **AES algorithm with SHA-256 key** that is the hash from 8 digit PIN provided by the user.
 - **Main application** that allows the user to sign a PDF file in **PAdES** format with the encrypted private key stored on the USB drive that will be **automatically detected**. User has to input 8 digit PIN to decrypt the private key. The application also features **signature verification** by using the **public key**.
 - Both applications feature an **user-friendly GUI** that displays application state (e.g. hardware detection, file paths, signing process status).
 - Project is documented by **Doxygen** which provides full code documentation.
 
-## How to use the project
+## 🧰 How to use the project
 
 1. **Generate RSA key pair**:
     - Run the auxilliary application to generate a pair of RSA keys.
@@ -23,7 +23,7 @@ The main goal of the project is to realize a software tool for emulating the qua
 3. **Verify the signature**:
     - Use the public key to verify the PDF document's signature. The application will check the integrity and authenticity of the document.
 
-## How to run the project
+## 🚀 How to run the project
 
 ### 1. Install the [UV package and project manager](https://docs.astral.sh/uv/)
 ```bash
@@ -32,12 +32,12 @@ pip install uv
 
 ### 2. Install required dependencies and create the virtual environment
 
-#### On Windows:
+#### 🪟 On Windows:
 ```powershell
 uv sync
 venv\Scripts\activate
 ```
-#### On Linux:
+#### 🐧 On Linux:
 ```bash
 uv sync
 source venv/bin/activate
