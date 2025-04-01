@@ -2,7 +2,7 @@
 
 ## 📖 Project overview
 
-The main goal of the project is to realize a software tool for emulating the qualified electronic signature in accordance to the **PAdES (PDF Advanced Electronic Signature)** format. The primary task of the project is to design and develop an application that will allow to digitally sign PDF documents using RSA encryption.The private key is stored on a USB drive encrypted by the AES algorithm.
+The main goal of the project is to realize a software tool for emulating the qualified electronic signature in accordance to the **PAdES (PDF Advanced Electronic Signature)** format. The primary task of the project is to design and develop an application that will allow to digitally sign PDF documents using RSA encryption. The private key is stored on a USB drive encrypted by the AES algorithm.
 
 ## 🛠️ Project features
 - **Auxilliary application** for generating a **pair of RSA 4096-length keys**. Generated private key will be stored on the chosen **USB drive** and encrypted using **AES algorithm with SHA-256 key** that is the hash from 8 digit PIN provided by the user.
