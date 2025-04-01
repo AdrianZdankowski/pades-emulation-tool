@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Tool for Emulating the PAdES Qualified Electronic Signature: Class Index</title>
+<title>Tool for Emulating the PAdES Qualified Electronic Signature: auxiliary_application/gui.py File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -76,7 +76,7 @@ $(function() { codefold.init(0); });
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('classes.html',''); initResizable(true); });
+$(function(){initNavTree('auxiliary__application_2gui_8py.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -102,20 +102,50 @@ $(function(){initNavTree('classes.html',''); initResizable(true); });
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Class Index</div></div>
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a>  </div>
+  <div class="headertitle"><div class="title">gui.py File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="qindex"><a class="qindex" href="#letter_G">G</a></div>
-<div class="classindex">
-<dl class="classindex even">
-<dt class="alphachar"><a id="letter_G" name="letter_G">G</a></dt>
-<dd><a class="el" href="classauxiliary__application_1_1gui_1_1_gui.html">Gui</a> (<a class="el" href="namespaceauxiliary__application_1_1gui.html">auxiliary_application.gui</a>)</dd><dd><a class="el" href="classmain__application_1_1gui_1_1_gui.html">Gui</a> (<a class="el" href="namespacemain__application_1_1gui.html">main_application.gui</a>)</dd></dl>
-</div>
-</div><!-- contents -->
+
+<p>GUI handling for the auxiliary application.  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classauxiliary__application_1_1gui_1_1_gui.html">Gui</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The main GUI class that handles the user interface for key generation, pendrive detection, and managing the state of the input fields.  <a href="classauxiliary__application_1_1gui_1_1_gui.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceauxiliary__application.html">auxiliary_application</a></td></tr>
+<tr class="memdesc:namespaceauxiliary__application"><td class="mdescLeft">&#160;</td><td class="mdescRight">This package delivers functions for generating a pair of RSA (4096) keys. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceauxiliary__application_1_1gui.html">auxiliary_application.gui</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>GUI handling for the auxiliary application. </p>
+<p>This module defines the graphical user interface components for the key generation application. It allows the user to input a PIN code, select a pendrive for saving the keys, and handle key generation using a graphical interface. The GUI is built using the <code>customtkinter</code> library.</p>
+<p>Classes:</p><ul>
+<li>Gui: The main GUI class that handles the user interface for key generation, pendrive detection, and managing the state of the input fields.</li>
+</ul>
+<p>Functions:</p><ul>
+<li>getPin: Handles the logic for key generation in a separate thread, after validating the PIN and selecting a pendrive.</li>
+<li>detectPendrive: Detects available pendrives and updates the GUI with the list.</li>
+<li>updateInputState: Updates the state of the input fields based on available pendrives and public key file selection.</li>
+<li>validatePin: Validates the entered PIN code (ensures it is a valid 8-digit number).</li>
+<li>selectFileLocation: Opens a dialog to select the location to save the public key.</li>
+<li>setGenerationStatusLabelText: Sets the status label text for key generation status. </li>
+</ul>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="dir_2530188425b893cbfdebd6b9296c77e8.html">auxiliary_application</a></li><li class="navelem"><a class="el" href="auxiliary__application_2gui_8py.html">gui.py</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>

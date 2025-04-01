@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['main_2epy_0',['main.py',['../auxilliary__application_2main_8py.html',1,'(Global Namespace)'],['../main__application_2main_8py.html',1,'(Global Namespace)']]],
+  ['main_2epy_0',['main.py',['../auxiliary__application_2main_8py.html',1,'(Global Namespace)'],['../main__application_2main_8py.html',1,'(Global Namespace)']]],
   ['main_5fapplication_1',['main_application',['../namespacemain__application.html',1,'']]],
   ['main_5fapplication_3a_3agui_2',['gui',['../namespacemain__application_1_1gui.html',1,'main_application']]],
   ['main_5fapplication_3a_3amain_3',['main',['../namespacemain__application_1_1main.html',1,'main_application']]],
