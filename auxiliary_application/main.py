@@ -1,5 +1,5 @@
 ##
-#@package auxilliary_application
+#@package auxiliary_application
 #@file main.py
 #@brief Main application logic for the auxiliary application.
 #
